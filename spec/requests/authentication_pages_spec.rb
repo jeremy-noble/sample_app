@@ -17,6 +17,11 @@ describe "Authentication" do
       it { should have_selector('title', text: 'Sign in') }
       it { should have_selector('div.alert.alert-error', text: 'Invalid') }
 
+      it { should_not have_link('Profile') }
+      it { should_not have_link('Settings') }
+      it { should_not have_link('Sign out') }
+
+
       describe "after visiting another page" do
 		  before { click_link "Home" }
 		  it { should_not have_selector('div.alert.alert-error') }

@@ -78,7 +78,9 @@ describe "Authentication" do
           it "should render the desired protected page" do
             page.should have_selector('title', text: 'Edit user')
           end
+
         end
+
       end
 
       describe "in the Users controller" do

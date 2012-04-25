@@ -49,7 +49,6 @@ describe "UserPages" do
 				sign_in user
 				visit signup_path
 			  end
-			  #specify { response.should redirect_to(root_path) }
 			  it { current_path.should == root_path }
 			end
 

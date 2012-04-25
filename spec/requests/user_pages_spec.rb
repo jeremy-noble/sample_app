@@ -44,11 +44,14 @@ describe "UserPages" do
 
 	        it { should have_link('Sign out') }
 
-			# describe "signup page should redirect to root" do
-			#   before { visit signup_path }
-			#   #specify { response.should redirect_to(root_path) }
-			#   it { current_path.should == root_path }
-			# end
+			describe "signup page should redirect to root" do
+				before do 
+				sign_in user
+				visit signup_path
+			  end
+			  #specify { response.should redirect_to(root_path) }
+			  it { current_path.should == root_path }
+			end
 
 			describe "followed by submitting a POST request to the Users#create action" do
 			  before do 
@@ -56,7 +59,6 @@ describe "UserPages" do
 				post signup_path
 			  end
 			  specify { response.should redirect_to(root_path) }
-			  #it { should have_selector('h1', text: 'Welcome to the Sample App') }
 			end
 	        
 	      end

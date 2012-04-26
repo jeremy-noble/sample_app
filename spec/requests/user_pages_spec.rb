@@ -169,20 +169,30 @@ describe "UserPages" do
 	    	it { should_not have_link('delete') }
 
 	    	describe "as an admin user" do
+
 	    		let(:admin) {FactoryGirl.create(:admin)}
+
 	    		before do
 	    			sign_in admin
 	    			visit users_path
 	    		end
+
 	    		it { should have_link('delete', href: user_path(User.first)) }
+
 	    		it "should be able to delete another user" do
 		          expect { click_link('delete') }.to change(User, :count).by(-1)
 		        end
+
 	    		it { should_not have_link('delete', href: user_path(admin)) }
+
+	    		describe "should not be able to send a DELETE request to themselves" do
+			        before { delete user_path(admin) }
+			        specify { response.should redirect_to(root_path) }        
+			    end
+
 	    	end
 
-
-	    end
+	    end #delete links
 
   	end #index
 
